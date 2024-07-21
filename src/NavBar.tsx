@@ -30,9 +30,10 @@ const NavBar: React.FC<NavBarProps> = ({ activeProject, setActiveProject }) => {
                     <li
                         key={index}
                         onClick={() => setActiveProject(index)}
-                        style={index === activeProject ? { ...listItemStyle, ...activeStyle } : listItemStyle}
+                        style={index === activeProject ? {...listItemStyle, ...activeStyle} : listItemStyle}
                     >
                         {project.title}
+                        <img style={preloadedImageStyle as React.CSSProperties} src={project.images[0]} alt=""/>
                     </li>
                 ))}
             </ul>
@@ -63,5 +64,9 @@ const activeStyle: React.CSSProperties = {
     backgroundColor: 'white'
 };
 
+const preloadedImageStyle = {
+    maxHeight: '0px',
+    maxWidth: '0px',
+};
 
 export default NavBar;

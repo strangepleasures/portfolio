@@ -70,6 +70,7 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({ activeProject }) => {
                 ? <pre style={descriptionStyle as React.CSSProperties}>{projectData[activeProject].description}</pre>
                 : <img style={imageStyle as React.CSSProperties} src={images[activeImageIndex]} alt="Current project" onLoad={onImageLoad} />
             }
+            {(activeImageIndex < images.length - 1) && (<img hidden={true} src={images[activeImageIndex + 1]} alt="" />)}
             {activeImageIndex < images.length - 1 && (
                 <button
                     style={{ ...arrowStyle, right: '10px' } as React.CSSProperties}
@@ -133,5 +134,6 @@ const spinnerStyle: React.CSSProperties = {
     height: '100%',
     width: '100%',
 };
+
 
 export default DisplayArea;
