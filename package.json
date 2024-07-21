@@ -24,7 +24,7 @@
     "start": "npm run yaml && react-scripts start",
     "build": "npm run yaml && react-scripts build",
     "yaml": "js-yaml ./src/projects.yaml > src/projects.json",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && cp CNAME build/",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
