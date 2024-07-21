@@ -71,7 +71,7 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({ activeProject }) => {
                 : <img style={imageStyle as React.CSSProperties} src={images[activeImageIndex]} alt="Current project" onLoad={onImageLoad} />
             }
             {(activeImageIndex < images.length - 1) && (<img hidden={true} src={images[activeImageIndex + 1]} alt="" />)}
-            {activeImageIndex < images.length - 1 && (
+            {!isLoading && activeImageIndex < images.length - 1 && (
                 <button
                     style={{ ...arrowStyle, right: '10px' } as React.CSSProperties}
                     onClick={increaseActiveIndex}
