@@ -45,40 +45,43 @@ function App() {
     })
 
     const useTouchScreen = window.matchMedia("only screen and (max-width: 768px)").matches && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    function navBarSetActiveProjectIn(index: number) {
+        setActiveProject(index);
+        setNavBarVisible(!useTouchScreen);
+    }
 
     return (
         <div className="App" style={appStyle}  {...handlers}>
-            <Header navBarVisible={navBarVisible} setNavBarVisible={setNavBarVisible} />
-            {(!navBarVisible) && <h3 style={projectTitleStyle}>{projectData[activeProject].title}</h3>}
+            {/*<h3>Photography by Pavel Mikhailovskii</h3>*/}
+            <Header navBarVisible={navBarVisible} setNavBarVisible={setNavBarVisible}/>
+
+            {(!navBarVisible) && <h4>{projectData[activeProject].title}</h4>}
             <div style={contentStyle}>
-                {navBarVisible && <NavBar activeProject={activeProject} setActiveProject={setActiveProject}/>}
-                <DisplayArea activeProject={activeProject}/>
+                {navBarVisible && <NavBar activeProject={activeProject} setActiveProject={navBarSetActiveProjectIn}/>}
+                {(!useTouchScreen || !navBarVisible) && <DisplayArea activeProject={activeProject}/>}
             </div>
             {!useTouchScreen && <Footer/>}
         </div>
-
     );
 }
 
 const appStyle: React.CSSProperties = {
+    paddingTop: '12px',
+    paddingLeft: '20px',
+    paddingRight: '20px',
+    paddingBottom: '8px',
     backgroundColor: 'black',
     color: 'white',
     fontFamily: "JetBrains Mono",
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh',
-    width: '100%',
+    height: 'calc(100vh - 20px)',
 };
 
 const contentStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'row',
     flex: 1,
-    height: 'max-content'
-};
-
-const projectTitleStyle: React.CSSProperties = {
-    paddingLeft: '20px',
 };
 
 export default App;

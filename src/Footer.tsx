@@ -12,9 +12,7 @@ const footerStyle: React.CSSProperties = {
     backgroundColor: 'black',
     color: 'white',
     display: 'flex',
-    gap: '10px',
     alignItems: 'left',
-    padding: '0 1em',
     fontFamily: "JetBrains Mono",
     justifyContent: 'space-between',
 };

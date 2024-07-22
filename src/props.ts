@@ -1,6 +1,6 @@
 export type NavBarProps = {
     activeProject: number;
-    setActiveProject: React.Dispatch<React.SetStateAction<number>>;
+    setActiveProject: (index: number) => void;
 };
 
 export type DisplayAreaProps = {

@@ -27,7 +27,6 @@ const navBarStyle: React.CSSProperties = {
     color: 'white',
     overflowY: 'auto',
     overflowX: 'hidden',
-    paddingLeft: '20px',
     display: 'inline-block',
     width: 'max-content',
 };
@@ -38,7 +37,7 @@ const listStyle: React.CSSProperties = {
 
 const listItemStyle: React.CSSProperties = {
     listStyle: 'none',
-    margin: '10px 0',
+    margin: '20px 0',
     whiteSpace: 'nowrap'
 };
 
