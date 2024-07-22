@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useSwipeable } from 'react-swipeable';
 import projectData from './projects.json';
 import { DisplayAreaProps } from "./props";
 import { BounceLoader } from 'react-spinners';
@@ -53,10 +54,15 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({ activeProject }) => {
         // Include dependencies in array for useEffect
     }, [activeImageIndex, descriptionExists, increaseActiveIndex, decreaseActiveIndex]);
 
-
+    const handlers = useSwipeable({
+        onSwipedLeft: () => increaseActiveIndex(),
+        onSwipedRight: () => decreaseActiveIndex(),
+      //  preventDefaultTouchMove: true,
+        trackMouse: true
+    });
 
     return (
-        <div style={displayAreaStyle as React.CSSProperties}>
+        <div {...handlers} style={displayAreaStyle as React.CSSProperties}>
             {(activeImageIndex > 0 || (activeImageIndex === 0 && descriptionExists)) && (
                 <button
                     style={{ ...arrowStyle, left: '10px' } as React.CSSProperties}
