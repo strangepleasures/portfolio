@@ -44,20 +44,25 @@ function App() {
             activeProject > 0 && setActiveProject(prev => prev - 1),
     })
 
+    const useTouchScreen = window.matchMedia("only screen and (max-width: 768px)").matches && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
     return (
         <div className="App" style={appStyle}  {...handlers}>
             <Header navBarVisible={navBarVisible} setNavBarVisible={setNavBarVisible} />
+            {(!navBarVisible) && <h3 style={projectTitleStyle}>{projectData[activeProject].title}</h3>}
             <div style={contentStyle}>
                 {navBarVisible && <NavBar activeProject={activeProject} setActiveProject={setActiveProject}/>}
                 <DisplayArea activeProject={activeProject}/>
             </div>
-            <Footer/>
+            {!useTouchScreen && <Footer/>}
         </div>
 
     );
 }
 
 const appStyle: React.CSSProperties = {
+    backgroundColor: 'black',
+    color: 'white',
     fontFamily: "JetBrains Mono",
     display: 'flex',
     flexDirection: 'column',
@@ -69,6 +74,16 @@ const contentStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'row',
     flex: 1,
+};
+
+const projectTitleStyle: React.CSSProperties = {
+    // display: 'flex',
+    // justifyContent: 'flex-start',
+    // alignItems: 'center',
+    paddingLeft: '20px',
+    // paddingRight: '20px',
+    // fontFamily: "JetBrains Mono",
+    // lineHeight: '1em',
 };
 
 export default App;
