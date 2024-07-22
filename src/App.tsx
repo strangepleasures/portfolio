@@ -5,11 +5,10 @@ import NavBar from './NavBar';
 import './JetBrains-Mono.css';
 import Footer from "./Footer";
 import projectData from "./projects.json";
-import { useSwipeable } from 'react-swipeable';
 
 function App() {
     const [activeProject, setActiveProject] = useState(0);
-    const [navBarVisible, setNavBarVisible] = useState( document.documentElement.clientWidth > document.documentElement.clientHeight);
+    const [navBarVisible, setNavBarVisible] = useState(isLandscape());
 
     useEffect(() => {
         function handleKeyDown(event: KeyboardEvent) {
@@ -37,33 +36,27 @@ function App() {
         };
     }, [navBarVisible, setNavBarVisible, activeProject, setActiveProject]);
 
-    const handlers = useSwipeable({
-        onSwipedUp: () =>
-            activeProject < projectData.length - 1 && setActiveProject(prev => prev + 1),
-        onSwipedDown: () =>
-            activeProject > 0 && setActiveProject(prev => prev - 1),
-    })
-
-    const useTouchScreen = window.matchMedia("only screen and (max-width: 768px)").matches && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    const useTouchScreen = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
     function navBarSetActiveProjectIn(index: number) {
         setActiveProject(index);
-        setNavBarVisible(!useTouchScreen);
+        setNavBarVisible(isLandscape());
     }
 
     return (
-        <div className="App" style={appStyle}  {...handlers}>
-            {/*<h3>Photography by Pavel Mikhailovskii</h3>*/}
+        <div className="App" style={appStyle}>
             <Header navBarVisible={navBarVisible} setNavBarVisible={setNavBarVisible}/>
 
             {(!navBarVisible) && <h4>{projectData[activeProject].title}</h4>}
             <div style={contentStyle}>
                 {navBarVisible && <NavBar activeProject={activeProject} setActiveProject={navBarSetActiveProjectIn}/>}
-                {(!useTouchScreen || !navBarVisible) && <DisplayArea activeProject={activeProject}/>}
+                {(isLandscape() || !navBarVisible) && <DisplayArea activeProject={activeProject}/>}
             </div>
             {!useTouchScreen && <Footer/>}
         </div>
     );
 }
+
+const isLandscape = () => document.documentElement.clientWidth > document.documentElement.clientHeight;
 
 const appStyle: React.CSSProperties = {
     paddingTop: '12px',

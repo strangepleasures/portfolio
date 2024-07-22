@@ -26,9 +26,10 @@ const navBarStyle: React.CSSProperties = {
     backgroundColor: 'black',
     color: 'white',
     overflowY: 'auto',
-    overflowX: 'hidden',
+    overflowX: 'clip',
     display: 'inline-block',
     width: 'max-content',
+    paddingRight: '20px'
 };
 
 const listStyle: React.CSSProperties = {

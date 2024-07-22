@@ -4,7 +4,6 @@ import projectData from './projects.json';
 import {DisplayAreaProps} from "./props";
 import {BounceLoader} from 'react-spinners';
 
-
 const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
     const descriptionExists = !!projectData[activeProject].description;
     const [activeImageIndex, setActiveImageIndex] = useState(descriptionExists ? -1 : 0);
@@ -76,24 +75,7 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
                        onLoad={onImageLoad}/>
             }
             {(activeImageIndex < images.length - 1) && (<img hidden={true} src={images[activeImageIndex + 1]} alt=""/>)}
-            <div style={arrowContainerStyle as React.CSSProperties}>
-                <div
-                    style={{
-                        ...arrowStyle,
-                        visibility: ((activeImageIndex === 0 && !descriptionExists) || activeImageIndex < 0) ? 'hidden' : 'visible'
-                    } as React.CSSProperties}
-                >
-                    &laquo;
-                </div>
-                <div
-                    style={{
-                        ...arrowStyle,
-                        visibility: (activeImageIndex >= images.length - 1) ? 'hidden' : 'visible'
-                    } as React.CSSProperties}
-                >
-                    &raquo;
-                </div>
-            </div>
+            <p>{(activeImageIndex >= 0) ? `${activeImageIndex + 1} / ${images.length}` : "click to continue"}</p>
         </div>
     );
 };
@@ -110,25 +92,9 @@ const displayAreaStyle = {
     overflow: 'hidden',
 };
 
-const arrowContainerStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    width: '100%',
-};
-
-const arrowStyle = {
-    color: 'white',
-    fontSize: '4em',
-    cursor: 'pointer',
-    background: 'transparent',
-    border: 'none',
-    paddingLeft: '60px',
-    paddingRight: '60px'
-};
-
 const imageStyle = {
-    maxHeight: '80vh',
-    maxWidth: '80vw',
+     maxHeight: '80vh',
+     maxWidth: '80vw',
 };
 
 const descriptionStyle = {
