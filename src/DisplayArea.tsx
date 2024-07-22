@@ -1,17 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useSwipeable } from 'react-swipeable';
+import React, {useState, useEffect, useCallback} from 'react';
+import {useSwipeable} from 'react-swipeable';
 import projectData from './projects.json';
-import { DisplayAreaProps } from "./props";
-import { BounceLoader } from 'react-spinners';
+import {DisplayAreaProps} from "./props";
+import {BounceLoader} from 'react-spinners';
 
 
-const DisplayArea: React.FC<DisplayAreaProps> = ({ activeProject }) => {
+const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
     const descriptionExists = !!projectData[activeProject].description;
     const [activeImageIndex, setActiveImageIndex] = useState(descriptionExists ? -1 : 0);
     const [isLoading, setIsLoading] = useState(false);
     const images = projectData[activeProject].images;
-    const useTouchScreen = window.matchMedia("only screen and (max-width: 768px)").matches && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-
 
     useEffect(() => {
         setActiveImageIndex(descriptionExists ? -1 : 0);
@@ -20,21 +18,32 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({ activeProject }) => {
     const decreaseActiveIndex = useCallback(() => {
         if ((activeImageIndex === 0 && !descriptionExists) || activeImageIndex < 0) return;
         setIsLoading(activeImageIndex > 0);
-        setActiveImageIndex(activeImageIndex - 1);
+        setActiveImageIndex(index => index - 1);
     }, [activeImageIndex, descriptionExists]);
 
     const increaseActiveIndex = useCallback(() => {
         if (activeImageIndex >= images.length - 1) return;
         setIsLoading(true);
-        setActiveImageIndex(activeImageIndex + 1);
+        setActiveImageIndex(index => index + 1);
     }, [activeImageIndex, images.length]);
 
     const onImageLoad = () => {
         setIsLoading(false);
     }
 
+    const onAreaClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (event.button !== 0) return;
+        const areaWidth = event.currentTarget.clientWidth;
+        const clickX = event.clientX - event.currentTarget.offsetLeft;
+
+        if (clickX < areaWidth / 2) {
+            decreaseActiveIndex();
+        } else {
+            increaseActiveIndex();
+        }
+    };
+
     useEffect(() => {
-        // Define a function to handle keydown events
         function handleKeyDown(event: KeyboardEvent) {
             switch (event.code) {
                 case 'ArrowLeft':
@@ -48,46 +57,43 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({ activeProject }) => {
             }
         }
 
-        // Add the event listener
         window.addEventListener('keydown', handleKeyDown);
-
-        // Remove event listener on cleanup
         return () => window.removeEventListener('keydown', handleKeyDown);
-
-        // Include dependencies in array for useEffect
-    }, [activeImageIndex, descriptionExists, increaseActiveIndex, decreaseActiveIndex]);
+    }, [increaseActiveIndex, decreaseActiveIndex]);
 
     const handlers = useSwipeable({
         onSwipedLeft: () => increaseActiveIndex(),
         onSwipedRight: () => decreaseActiveIndex(),
-      //  preventDefaultTouchMove: true,
         trackMouse: true
     });
 
     return (
-        <div {...handlers} style={displayAreaStyle as React.CSSProperties}>
-            {!useTouchScreen && (activeImageIndex > 0 || (activeImageIndex === 0 && descriptionExists)) && (
-                <button
-                    style={{ ...arrowStyle, left: '10px' } as React.CSSProperties}
-                    onClick={decreaseActiveIndex}
+        <div {...handlers} style={displayAreaStyle as React.CSSProperties} onClick={onAreaClick}>
+            {isLoading && <div style={spinnerStyle}><BounceLoader color={"#FFFFFF"}/></div>}
+            {activeImageIndex === -1
+                ? <div style={preWrapperStyle}><pre style={descriptionStyle as React.CSSProperties}>{projectData[activeProject].description}</pre></div>
+                : <img style={imageStyle as React.CSSProperties} src={images[activeImageIndex]} alt=""
+                       onLoad={onImageLoad}/>
+            }
+            {(activeImageIndex < images.length - 1) && (<img hidden={true} src={images[activeImageIndex + 1]} alt=""/>)}
+            <div style={arrowContainerStyle as React.CSSProperties}>
+                <div
+                    style={{
+                        ...arrowStyle,
+                        visibility: ((activeImageIndex === 0 && !descriptionExists) || activeImageIndex < 0) ? 'hidden' : 'visible'
+                    } as React.CSSProperties}
                 >
                     &laquo;
-                </button>
-            )}
-            {isLoading && <div style={spinnerStyle}><BounceLoader color={"#FFFFFF"} /></div>}
-            {activeImageIndex === -1
-                ? <pre style={descriptionStyle as React.CSSProperties}>{projectData[activeProject].description}</pre>
-                : <img style={imageStyle as React.CSSProperties} src={images[activeImageIndex]} alt="Current project" onLoad={onImageLoad} />
-            }
-            {(activeImageIndex < images.length - 1) && (<img hidden={true} src={images[activeImageIndex + 1]} alt="" />)}
-            {!useTouchScreen && activeImageIndex < images.length - 1 && (
-                <button
-                    style={{ ...arrowStyle, right: '10px' } as React.CSSProperties}
-                    onClick={increaseActiveIndex}
+                </div>
+                <div
+                    style={{
+                        ...arrowStyle,
+                        visibility: (activeImageIndex >= images.length - 1) ? 'hidden' : 'visible'
+                    } as React.CSSProperties}
                 >
                     &raquo;
-                </button>
-            )}
+                </div>
+            </div>
         </div>
     );
 };
@@ -98,20 +104,27 @@ const displayAreaStyle = {
     color: 'white',
     flexGrow: 1,
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    overflow: 'clip',
+    overflow: 'hidden',
+};
+
+const arrowContainerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+    // bottom: '10px', It is not needed now..
 };
 
 const arrowStyle = {
     color: 'white',
-    fontSize: '6em',
+    fontSize: '4em',
     cursor: 'pointer',
     background: 'transparent',
     border: 'none',
-    position: 'absolute',
-    top: '50%',
-    transform: 'translateY(-50%)',
+    paddingLeft: '60px',
+    paddingRight: '60px'
 };
 
 const imageStyle = {
@@ -130,6 +143,7 @@ const descriptionStyle = {
     whiteSpace: 'pre-wrap',
     fontSize: '1.2em',
     paddingRight: '80px',
+    flexGrow: '1',
 };
 
 const spinnerStyle: React.CSSProperties = {
@@ -142,6 +156,8 @@ const spinnerStyle: React.CSSProperties = {
     height: '100%',
     width: '100%',
 };
+
+const preWrapperStyle= {display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}
 
 
 export default DisplayArea;

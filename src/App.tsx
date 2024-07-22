@@ -74,6 +74,7 @@ const contentStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'row',
     flex: 1,
+    height: 'max-content'
 };
 
 const projectTitleStyle: React.CSSProperties = {

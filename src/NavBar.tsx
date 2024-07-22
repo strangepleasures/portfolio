@@ -2,6 +2,7 @@ import React from 'react';
 import projectData from './projects.json';
 import {NavBarProps} from "./props";
 
+
 const NavBar: React.FC<NavBarProps> = ({ activeProject, setActiveProject }) => {
     return (
         <nav style={navBarStyle}>
