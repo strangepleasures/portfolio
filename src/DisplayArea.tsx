@@ -4,6 +4,7 @@ import projectData from './projects.json';
 import { DisplayAreaProps } from "./props";
 import { BounceLoader } from 'react-spinners';
 
+
 const DisplayArea: React.FC<DisplayAreaProps> = ({ activeProject }) => {
     const descriptionExists = !!projectData[activeProject].description;
     const [activeImageIndex, setActiveImageIndex] = useState(descriptionExists ? -1 : 0);

@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import './JetBrains-Mono.css';
 import Footer from "./Footer";
 import projectData from "./projects.json";
+import { useSwipeable } from 'react-swipeable';
 
 function App() {
     const [activeProject, setActiveProject] = useState(0);
@@ -36,8 +37,15 @@ function App() {
         };
     }, [navBarVisible, setNavBarVisible, activeProject, setActiveProject]);
 
+    const handlers = useSwipeable({
+        onSwipedUp: () =>
+            activeProject < projectData.length - 1 && setActiveProject(prev => prev + 1),
+        onSwipedDown: () =>
+            activeProject > 0 && setActiveProject(prev => prev - 1),
+    })
+
     return (
-        <div className="App" style={appStyle}>
+        <div className="App" style={appStyle}  {...handlers}>
             <Header navBarVisible={navBarVisible} setNavBarVisible={setNavBarVisible} />
             <div style={contentStyle}>
                 {navBarVisible && <NavBar activeProject={activeProject} setActiveProject={setActiveProject}/>}
