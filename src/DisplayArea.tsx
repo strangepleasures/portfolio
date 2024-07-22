@@ -94,7 +94,7 @@ const displayAreaStyle = {
 
 const imageStyle = {
      maxHeight: '80vh',
-     maxWidth: '80vw',
+     maxWidth: '90vw',
 };
 
 const descriptionStyle = {
