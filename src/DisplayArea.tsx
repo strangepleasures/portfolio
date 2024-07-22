@@ -30,12 +30,12 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
         setIsLoading(false);
     }
 
-    const onAreaClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const onAreaClick = (event: React.MouseEvent<HTMLElement>) => {
         if (event.button !== 0) return;
         const areaWidth = event.currentTarget.clientWidth;
         const clickX = event.clientX - event.currentTarget.offsetLeft;
 
-        if (clickX < areaWidth / 2) {
+        if (clickX < areaWidth / 2 && activeImageIndex >= 0) {
             decreaseActiveIndex();
         } else {
             increaseActiveIndex();
@@ -58,7 +58,7 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [increaseActiveIndex, decreaseActiveIndex]);
+    }, [increaseActiveIndex, decreaseActiveIndex, activeImageIndex]);
 
     const handlers = useSwipeable({
         onSwipedLeft: () => increaseActiveIndex(),
