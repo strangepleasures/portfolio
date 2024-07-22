@@ -114,7 +114,6 @@ const arrowContainerStyle = {
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
-    // bottom: '10px', It is not needed now..
 };
 
 const arrowStyle = {

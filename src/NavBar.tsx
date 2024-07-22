@@ -26,7 +26,7 @@ const navBarStyle: React.CSSProperties = {
     backgroundColor: 'black',
     color: 'white',
     overflowY: 'auto',
-    overflowX: 'hidden', // added this line
+    overflowX: 'hidden',
     paddingLeft: '20px',
     display: 'inline-block',
     width: 'max-content',

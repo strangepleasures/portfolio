@@ -61,8 +61,8 @@ const iconStyle: React.CSSProperties = {
 };
 
 const h2Style: React.CSSProperties = {
-    margin: '0',        // Set to 0 to eliminate browser's default margins on h2
-    alignSelf: 'center', // Vertical alignment in its container
+    margin: '0',
+    alignSelf: 'center',
 };
 
 export default Header;
