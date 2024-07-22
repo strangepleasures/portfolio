@@ -7,12 +7,13 @@ import Footer from "./Footer";
 
 function App() {
     const [activeProject, setActiveProject] = useState(0);
+    const [navBarVisible, setNavBarVisible] = useState(window.screen.width > window.screen.height);
 
     return (
         <div className="App">
-            <Header/>
+            <Header navBarVisible={navBarVisible} setNavBarVisible={setNavBarVisible} />
             <div style={contentStyle}>
-                <NavBar activeProject={activeProject} setActiveProject={setActiveProject}/>
+                {navBarVisible && <NavBar activeProject={activeProject} setActiveProject={setActiveProject}/>}
                 <DisplayArea activeProject={activeProject}/>
             </div>
             <Footer/>
@@ -27,6 +28,7 @@ const contentStyle: React.CSSProperties = {
     flexDirection: 'row',
     overflowY: 'clip',
     height: 'calc(100vh - 80px)',
+    width: '100%'
 };
 
 export default App;

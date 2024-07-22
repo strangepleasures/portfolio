@@ -88,7 +88,7 @@ const displayAreaStyle = {
     backgroundColor: 'black',
     color: 'white',
     height: '100vh',
-    width: 'calc(100vw - 200px)',
+    width: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
