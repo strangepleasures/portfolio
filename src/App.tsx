@@ -12,17 +12,20 @@ function App() {
 
     useEffect(() => {
         function handleKeyDown(event: KeyboardEvent) {
-            if(event.code === 'Space') {
-                setNavBarVisible(!navBarVisible)
-            }
-            if (event.code === 'ArrowDown'){
-                if (activeProject < projectData.length - 1) {
-                    setActiveProject(activeProject + 1);
-                }
-            } else if(event.code === 'ArrowUp'){
-                if (activeProject > 0) {
-                    setActiveProject(activeProject - 1);
-                }
+            switch (event.code) {
+                case 'Space':
+                    setNavBarVisible(!navBarVisible);
+                    break;
+                case 'ArrowDown':
+                    if (activeProject < projectData.length - 1) {
+                        setActiveProject(activeProject + 1);
+                    }
+                    break;
+                case 'ArrowUp':
+                    if (activeProject > 0) {
+                        setActiveProject(activeProject - 1);
+                    }
+                    break;
             }
         }
 

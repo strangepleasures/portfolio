@@ -25,7 +25,7 @@ const navBarStyle: React.CSSProperties = {
     backgroundColor: 'black',
     color: 'white',
     overflowY: 'auto',
-    paddingLeft: '20px', // Add padding on the left
+    paddingLeft: '20px',
 };
 
 const listStyle: React.CSSProperties = {
