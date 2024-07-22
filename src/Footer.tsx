@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div style={footerStyle}>
-            <div>Use ↑ ↓ to navigate between projects and ← → to navigate between images.</div><div>Content, design, coding &copy; Pavel Mikhailovskii</div>
+            <div>Use SPACE to toggle the menu, ↑ ↓ to navigate between projects and ← → to navigate between images.</div><div>Content, design, coding &copy; Pavel Mikhailovskii</div>
         </div>
     )
 }

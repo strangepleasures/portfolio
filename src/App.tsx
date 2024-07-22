@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from './Header';
 import DisplayArea from './DisplayArea';
 import NavBar from './NavBar';
@@ -8,6 +8,20 @@ import Footer from "./Footer";
 function App() {
     const [activeProject, setActiveProject] = useState(0);
     const [navBarVisible, setNavBarVisible] = useState(window.screen.width > window.screen.height);
+
+    useEffect(() => {
+        function handleKeyDown(event: KeyboardEvent) {
+            if(event.code === 'Space') {
+                setNavBarVisible(!navBarVisible)
+            }
+        }
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [navBarVisible, setNavBarVisible]);
 
     return (
         <div className="App">
