@@ -37,6 +37,7 @@ function App() {
     }, [navBarVisible, setNavBarVisible, activeProject, setActiveProject]);
 
     const useTouchScreen = ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
     function navBarSetActiveProjectIn(index: number) {
         setActiveProject(index);
         setNavBarVisible(isLandscape());
@@ -51,7 +52,7 @@ function App() {
                 {navBarVisible && <NavBar activeProject={activeProject} setActiveProject={navBarSetActiveProjectIn}/>}
                 {(isLandscape() || !navBarVisible) && <DisplayArea activeProject={activeProject}/>}
             </div>
-            {!useTouchScreen && <Footer/>}
+           {!useTouchScreen && <Footer/>}
         </div>
     );
 }
