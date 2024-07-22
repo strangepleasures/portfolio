@@ -10,7 +10,7 @@ const Header = ({navBarVisible, setNavBarVisible}: HeaderProps) => {
     return (
         <header style={headerStyle}>
             <div style={menuIconStyle} onClick={() => setNavBarVisible(!navBarVisible)}><FaBars/></div>
-            <h2 style={h2Style}>Photography by Pavel Mikhailovskii</h2>
+            <h3 style={h2Style}>Photography by Pavel Mikhailovskii</h3>
             <div style={iconsStyle}>
                 <a href="https://www.instagram.com/pavel.mikhailovskii" target="_blank" rel="noreferrer noopener">
                     <FaInstagram style={iconStyle}/>

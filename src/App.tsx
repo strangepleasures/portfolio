@@ -9,7 +9,7 @@ import { useSwipeable } from 'react-swipeable';
 
 function App() {
     const [activeProject, setActiveProject] = useState(0);
-    const [navBarVisible, setNavBarVisible] = useState(window.screen.width > window.screen.height);
+    const [navBarVisible, setNavBarVisible] = useState( document.documentElement.clientWidth > document.documentElement.clientHeight);
 
     useEffect(() => {
         function handleKeyDown(event: KeyboardEvent) {

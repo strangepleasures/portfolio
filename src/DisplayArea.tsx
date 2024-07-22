@@ -94,7 +94,7 @@ const displayAreaStyle = {
     position: 'relative',
     backgroundColor: 'black',
     color: 'white',
-    width: '100%',
+    flexGrow: 1,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
