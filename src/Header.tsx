@@ -10,7 +10,7 @@ const Header = ({navBarVisible, setNavBarVisible}: HeaderProps) => {
     return (
         <header style={headerStyle}>
             <div style={menuIconStyle} onClick={() => setNavBarVisible(!navBarVisible)}><FaBars/></div>
-            <h1>Photography by Pavel Mikhailovskii</h1>
+            <h2>Photography by Pavel Mikhailovskii</h2>
             <div style={iconsStyle}>
                 <a href="https://www.instagram.com/pavel.mikhailovskii" target="_blank" rel="noreferrer noopener">
                     <FaInstagram style={iconStyle}/>
@@ -32,7 +32,6 @@ const Header = ({navBarVisible, setNavBarVisible}: HeaderProps) => {
 const headerStyle: React.CSSProperties = {
     backgroundColor: 'black',
     color: 'white',
-    height: '60px',
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',

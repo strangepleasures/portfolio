@@ -87,7 +87,6 @@ const displayAreaStyle = {
     position: 'relative',
     backgroundColor: 'black',
     color: 'white',
-    height: '100vh',
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
