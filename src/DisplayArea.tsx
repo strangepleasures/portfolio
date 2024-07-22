@@ -93,8 +93,8 @@ const displayAreaStyle = {
 };
 
 const imageStyle = {
-    maxHeight: 'calc(100% - 32px)',
-    maxWidth: '90vw',
+    maxHeight: 'calc(90% - 32px)',
+    maxWidth: '90%',
     paddingBottom: '8px'
 };
 
