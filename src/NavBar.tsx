@@ -26,15 +26,18 @@ const navBarStyle: React.CSSProperties = {
     color: 'white',
     overflowY: 'auto',
     paddingLeft: '20px',
+    display: 'inline-block',
+    width: 'max-content',
 };
 
 const listStyle: React.CSSProperties = {
-    padding: 0
+    padding: 0,
 };
 
 const listItemStyle: React.CSSProperties = {
     listStyle: 'none',
-    margin: '10px 0'
+    margin: '10px 0',
+    whiteSpace: 'nowrap'
 };
 
 const activeStyle: React.CSSProperties = {
