@@ -36,6 +36,7 @@ const headerStyle: React.CSSProperties = {
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    verticalAlign: 'top',
     paddingLeft: '20px',
     paddingRight: '20px',
     fontFamily: "JetBrains Mono",
