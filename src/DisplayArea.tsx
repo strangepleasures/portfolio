@@ -123,7 +123,13 @@ const spinnerStyle: React.CSSProperties = {
     width: '100%',
 };
 
-const preWrapperStyle= {display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}
+const preWrapperStyle= {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    maxHeight: 'calc(90% - 44px)',
+    paddingBottom: '20px'
+}
 
 
 export default DisplayArea;
