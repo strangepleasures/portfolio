@@ -10,6 +10,8 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({ activeProject }) => {
     const [activeImageIndex, setActiveImageIndex] = useState(descriptionExists ? -1 : 0);
     const [isLoading, setIsLoading] = useState(false);
     const images = projectData[activeProject].images;
+    const useTouchScreen = window.matchMedia("only screen and (max-width: 768px)").matches && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
 
     useEffect(() => {
         setActiveImageIndex(descriptionExists ? -1 : 0);
@@ -64,7 +66,7 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({ activeProject }) => {
 
     return (
         <div {...handlers} style={displayAreaStyle as React.CSSProperties}>
-            {(activeImageIndex > 0 || (activeImageIndex === 0 && descriptionExists)) && (
+            {!useTouchScreen && (activeImageIndex > 0 || (activeImageIndex === 0 && descriptionExists)) && (
                 <button
                     style={{ ...arrowStyle, left: '10px' } as React.CSSProperties}
                     onClick={decreaseActiveIndex}
@@ -78,7 +80,7 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({ activeProject }) => {
                 : <img style={imageStyle as React.CSSProperties} src={images[activeImageIndex]} alt="Current project" onLoad={onImageLoad} />
             }
             {(activeImageIndex < images.length - 1) && (<img hidden={true} src={images[activeImageIndex + 1]} alt="" />)}
-            {!isLoading && activeImageIndex < images.length - 1 && (
+            {!useTouchScreen && activeImageIndex < images.length - 1 && (
                 <button
                     style={{ ...arrowStyle, right: '10px' } as React.CSSProperties}
                     onClick={increaseActiveIndex}

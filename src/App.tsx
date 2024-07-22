@@ -77,13 +77,7 @@ const contentStyle: React.CSSProperties = {
 };
 
 const projectTitleStyle: React.CSSProperties = {
-    // display: 'flex',
-    // justifyContent: 'flex-start',
-    // alignItems: 'center',
     paddingLeft: '20px',
-    // paddingRight: '20px',
-    // fontFamily: "JetBrains Mono",
-    // lineHeight: '1em',
 };
 
 export default App;
