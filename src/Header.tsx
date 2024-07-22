@@ -30,15 +30,11 @@ const Header = ({navBarVisible, setNavBarVisible}: HeaderProps) => {
 }
 
 const headerStyle: React.CSSProperties = {
-  //  paddingTop: '12px',
-    backgroundColor: 'black',
     color: 'white',
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
     verticalAlign: 'top',
-    // paddingLeft: '20px',
-    // paddingRight: '20px',
     fontFamily: "JetBrains Mono",
     lineHeight: '1em',
 };

@@ -76,6 +76,8 @@ const contentStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'row',
     flex: 1,
+    maxHeight:  '100%',
+    overflow: 'auto',
 };
 
 export default App;

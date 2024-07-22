@@ -75,7 +75,7 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
                        onLoad={onImageLoad}/>
             }
             {(activeImageIndex < images.length - 1) && (<img hidden={true} src={images[activeImageIndex + 1]} alt=""/>)}
-            <p>{(activeImageIndex >= 0) ? `${activeImageIndex + 1} / ${images.length}` : "click to continue"}</p>
+            <div style={{height: '24px'}}>{(activeImageIndex >= 0) ? `${activeImageIndex + 1} / ${images.length}` : "click to continue"}</div>
         </div>
     );
 };
@@ -93,8 +93,9 @@ const displayAreaStyle = {
 };
 
 const imageStyle = {
-     maxHeight: '80vh',
-     maxWidth: '90vw',
+    maxHeight: 'calc(100% - 32px)',
+    maxWidth: '90vw',
+    paddingBottom: '8px'
 };
 
 const descriptionStyle = {
