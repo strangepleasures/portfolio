@@ -35,7 +35,7 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
         const areaWidth = event.currentTarget.clientWidth;
         const clickX = event.clientX - event.currentTarget.offsetLeft;
 
-        if (clickX < areaWidth / 2 && activeImageIndex >= 0) {
+        if (clickX < areaWidth / 2) {
             decreaseActiveIndex();
         } else {
             increaseActiveIndex();
@@ -75,7 +75,7 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
                        onLoad={onImageLoad}/>
             }
             {(activeImageIndex < images.length - 1) && (<img hidden={true} src={images[activeImageIndex + 1]} alt=""/>)}
-            <div style={{height: '24px'}}>{(activeImageIndex >= 0) ? `${activeImageIndex + 1} / ${images.length}` : "click to continue"}</div>
+            <div style={{height: '24px'}}>{`${activeImageIndex + 1 + (descriptionExists ? 1 : 0)} / ${images.length  + (descriptionExists ? 1 : 0)}`}</div>
         </div>
     );
 };
