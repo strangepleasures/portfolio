@@ -110,6 +110,7 @@ const descriptionStyle = {
     fontSize: '1.2em',
     paddingRight: '80px',
     flexGrow: '1',
+    pointerEvents: 'none' as 'none',
 };
 
 const spinnerStyle: React.CSSProperties = {
