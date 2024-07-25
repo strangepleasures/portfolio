@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback, useRef} from 'react';
 import {useSwipeable} from 'react-swipeable';
 import projectData from './projects.json';
 import {DisplayAreaProps} from "./props";
@@ -9,6 +9,19 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
     const [activeImageIndex, setActiveImageIndex] = useState(descriptionExists ? -1 : 0);
     const [isLoading, setIsLoading] = useState(false);
     const images = projectData[activeProject].images;
+
+    const navRef = useRef<HTMLDivElement>(null);
+
+    const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
+        if (!navRef.current) return;
+        const navWidth = navRef.current.clientWidth;
+        const mousePosition = event.clientX - navRef.current.offsetLeft;
+        if (mousePosition < navWidth / 2) {
+            navRef.current.style.cursor = 'w-resize';
+        } else {
+            navRef.current.style.cursor = 'e-resize';
+        }
+    };
 
     useEffect(() => {
         setActiveImageIndex(descriptionExists ? -1 : 0);
@@ -67,7 +80,7 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
     });
 
     return (
-        <div {...handlers} style={displayAreaStyle as React.CSSProperties} onClick={onAreaClick}>
+        <div {...handlers} style={displayAreaStyle as React.CSSProperties} onClick={onAreaClick} onMouseMove={handleMouseMove} ref={navRef}>
             {isLoading && <div style={spinnerStyle}><BounceLoader color={"#FFFFFF"}/></div>}
             {activeImageIndex === -1
                 ? <div style={preWrapperStyle}><pre style={descriptionStyle as React.CSSProperties}>{projectData[activeProject].description}</pre></div>
