@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {FaInstagram, FaFlickr, FaEnvelope, FaTumblr, FaBars} from "react-icons/fa";
+import './Header.css';
 
 interface HeaderProps {
     navBarVisible: boolean,
@@ -7,9 +8,18 @@ interface HeaderProps {
 }
 
 const Header = ({navBarVisible, setNavBarVisible}: HeaderProps) => {
+    const [blink, setBlink] = useState(!navBarVisible);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setBlink(false);
+        }, 3000);
+        return () => clearTimeout(timeout);
+    }, []);
+
     return (
         <header style={headerStyle}>
-            <div style={menuIconStyle} onClick={() => setNavBarVisible(!navBarVisible)}><FaBars/></div>
+            <div style={menuIconStyle} className={blink ? "menu-icon-blink" : ""}  onClick={() => setNavBarVisible(!navBarVisible)}><FaBars/></div>
             <h3 style={h3Style}>Photography by Pavel Mikhailovskii</h3>
             <div style={iconsStyle}>
                 <a href="https://www.instagram.com/pavel.mikhailovskii" target="_blank" rel="noreferrer noopener">
@@ -60,5 +70,6 @@ const h3Style: React.CSSProperties = {
     margin: '0',
     alignSelf: 'center',
 };
+
 
 export default Header;
