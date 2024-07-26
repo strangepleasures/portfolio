@@ -53,6 +53,8 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
         } else {
             increaseActiveIndex();
         }
+
+        event.preventDefault();
     };
 
     useEffect(() => {
