@@ -5,4 +5,5 @@ export type NavBarProps = {
 
 export type DisplayAreaProps = {
     activeProject: number;
+    navBarVisible: boolean;
 };

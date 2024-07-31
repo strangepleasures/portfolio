@@ -4,7 +4,7 @@ import projectData from './projects.json';
 import {DisplayAreaProps} from "./props";
 import {BounceLoader} from 'react-spinners';
 
-const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
+const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject, navBarVisible}) => {
     const descriptionExists = !!projectData[activeProject].description;
     const [activeImageIndex, setActiveImageIndex] = useState(descriptionExists ? -1 : 0);
     const [isLoading, setIsLoading] = useState(false);
@@ -82,7 +82,7 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject}) => {
     });
 
     return (
-        <div {...handlers} style={displayAreaStyle as React.CSSProperties} onClick={onAreaClick} onMouseMove={handleMouseMove} ref={navRef}>
+        <div {...handlers} style={{...displayAreaStyle as React.CSSProperties, paddingLeft: navBarVisible ? "20px" : '0'}} onClick={onAreaClick} onMouseMove={handleMouseMove} ref={navRef}>
             {isLoading && <div style={spinnerStyle}><BounceLoader color={"#FFFFFF"}/></div>}
             {activeImageIndex === -1
                 ? <div style={preWrapperStyle}><pre style={descriptionStyle as React.CSSProperties}>{projectData[activeProject].description}</pre></div>
@@ -109,7 +109,7 @@ const displayAreaStyle = {
 
 const imageStyle = {
     maxHeight: 'calc(90% - 32px)',
-    maxWidth: '90%',
+    maxWidth: '100%',
     paddingBottom: '8px'
 };
 
