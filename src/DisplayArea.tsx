@@ -3,6 +3,7 @@ import {useSwipeable} from 'react-swipeable';
 import projectData from './projects.json';
 import {DisplayAreaProps} from "./props";
 import {BounceLoader} from 'react-spinners';
+import ReactMarkdown from 'react-markdown';
 
 const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject, navBarVisible}) => {
     const descriptionExists = !!projectData[activeProject].description;
@@ -17,9 +18,9 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject, navBarVisible})
         const navWidth = navRef.current.clientWidth;
         const mousePosition = event.clientX - navRef.current.offsetLeft;
         if (mousePosition < navWidth / 2) {
-            navRef.current.style.cursor = 'w-resize';
+            navRef.current.style.cursor = (activeImageIndex > 0 || descriptionExists) ? 'w-resize' : 'default';
         } else {
-            navRef.current.style.cursor = 'e-resize';
+            navRef.current.style.cursor = (activeImageIndex < images.length - 1) ? 'e-resize' : 'default';
         }
     };
 
@@ -54,7 +55,7 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject, navBarVisible})
             increaseActiveIndex();
         }
 
-        event.preventDefault();
+   //    event.preventDefault();
     };
 
     useEffect(() => {
@@ -82,10 +83,10 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject, navBarVisible})
     });
 
     return (
-        <div {...handlers} style={{...displayAreaStyle as React.CSSProperties, paddingLeft: navBarVisible ? "20px" : '0'}} onClick={onAreaClick} onMouseMove={handleMouseMove} ref={navRef}>
+        <div {...handlers} style={{...displayAreaStyle as React.CSSProperties, paddingLeft: navBarVisible ? "20px" : '0'}}  onClick={onAreaClick} onMouseMove={handleMouseMove} ref={navRef}>
             {isLoading && <div style={spinnerStyle}><BounceLoader color={"#FFFFFF"}/></div>}
             {activeImageIndex === -1
-                ? <div style={preWrapperStyle}><pre style={descriptionStyle as React.CSSProperties}>{projectData[activeProject].description}</pre></div>
+                ? <div style={{textAlign: 'left'}}><ReactMarkdown children={projectData[activeProject].description}></ReactMarkdown></div>
                 : <img style={imageStyle as React.CSSProperties} src={images[activeImageIndex]} alt=""
                        onLoad={onImageLoad}/>
             }
@@ -113,21 +114,6 @@ const imageStyle = {
     paddingBottom: '8px'
 };
 
-const descriptionStyle = {
-    color: 'white',
-    maxHeight: '80vh',
-    maxWidth: '80vw',
-    overflowY: 'auto' as 'auto',
-    overflowX: 'wrap' as 'hidden',
-    textAlign: 'left',
-    wordWrap: 'break-word',
-    whiteSpace: 'pre-wrap',
-    fontSize: '1.2em',
-    paddingRight: '80px',
-    flexGrow: '1',
-    pointerEvents: 'none' as 'none',
-};
-
 const spinnerStyle: React.CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
@@ -139,13 +125,6 @@ const spinnerStyle: React.CSSProperties = {
     width: '100%',
 };
 
-const preWrapperStyle= {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    maxHeight: 'calc(90% - 44px)',
-    paddingBottom: '20px'
-}
 
 
 export default DisplayArea;
