@@ -81,9 +81,10 @@
     - images/tape.jpg
     - images/thing.jpg
     - images/form.jpg
+    - images/geometry.jpg
 - title: A roll of the dice will never abolish chance
   images:
-    - https://live.staticflickr.com/65535/53680725385_3661083d8d_3k.jpg
+    - images/roll.jpg
     - https://live.staticflickr.com/65535/53684250377_c84a358c7f_3k.jpg
     - https://live.staticflickr.com/65535/53664832239_b2767dd9d3_3k.jpg
     - https://live.staticflickr.com/65535/53685084486_fd727b19ec_3k.jpg
@@ -555,10 +556,10 @@
     - https://live.staticflickr.com/65535/50994704046_ffcf4eafc3_3k.jpg
 - title: Travelling with Richter
   images:
-    - https://live.staticflickr.com/65535/52845591067_8a536dfb18_3k.jpg
-    - https://live.staticflickr.com/65535/52846575810_be4763eafe_3k.jpg
-    - https://live.staticflickr.com/65535/52846082501_1f2330ecd1_3k.jpg
-    - https://live.staticflickr.com/65535/52846481075_1c3aa64bd7_3k.jpg
+    - images/richter1.jpg
+    - images/richter2.jpg
+    - images/richter3.jpg
+    - images/richter4.jpg
 - title: Serra, Kiefer, Rothko, Beuys
   images:
     - https://live.staticflickr.com/65535/53365981667_8708d8f83d_3k.jpg
