@@ -34,11 +34,11 @@
     "title": "Meaningless Miracles",
     "images": [
       "images/miracle1.jpg",
-      "https://live.staticflickr.com/65535/51930157934_5c5ec9d01d_3k.jpg",
-      "https://live.staticflickr.com/65535/51933991886_433ced8053_3k.jpg",
-      "https://live.staticflickr.com/65535/52049082843_2b8ac63348_3k.jpg",
+      "images/miracle2.jpg",
+      "images/miracle3.jpg",
+      "images/miracle4.jpg",
       "https://live.staticflickr.com/65535/51820118609_20fc9b93bb_3k.jpg",
-      "https://live.staticflickr.com/65535/51829409807_840bf7d805_3k.jpg",
+      "images/miracle6.jpg",
       "https://live.staticflickr.com/65535/51304608576_09f31dbfd9_3k.jpg",
       "https://live.staticflickr.com/65535/52203076556_2db25cbc46_3k.jpg",
       "https://live.staticflickr.com/65535/52863017911_51c40388f1_3k.jpg",
@@ -430,7 +430,7 @@
   {
     "title": "Berlin",
     "images": [
-      "https://live.staticflickr.com/65535/52252061709_3e35ff99aa_3k.jpg",
+      "images/berlin-ducks.jpg",
       "https://live.staticflickr.com/65535/53537866420_1f76215726_3k.jpg",
       "https://live.staticflickr.com/65535/53537574704_054a482596_3k.jpg",
       "https://live.staticflickr.com/65535/53534313002_5a9eac9e36_3k.jpg",
