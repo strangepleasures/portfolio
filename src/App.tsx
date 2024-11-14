@@ -50,7 +50,7 @@ function App() {
             {(!navBarVisible) && <h4>{projectData[activeProject].title}</h4>}
             <div style={contentStyle}>
                 {navBarVisible && <NavBar activeProject={activeProject} setActiveProject={navBarSetActiveProjectIn}/>}
-                {(isLandscape() || !navBarVisible) && <DisplayArea activeProject={activeProject} navBarVisible={navBarVisible}/>}
+                {(isLandscape() || !navBarVisible) && <DisplayArea activeProject={activeProject} navBarVisible={navBarVisible}  setNavBarVisible={setNavBarVisible}/>}
             </div>
            {!useTouchScreen && <Footer/>}
         </div>

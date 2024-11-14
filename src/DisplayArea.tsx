@@ -5,7 +5,7 @@ import {DisplayAreaProps} from "./props";
 import {BounceLoader} from 'react-spinners';
 import ReactMarkdown from 'react-markdown';
 
-const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject, navBarVisible}) => {
+const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject, navBarVisible, setNavBarVisible}) => {
     const descriptionExists = !!projectData[activeProject].description;
     const [activeImageIndex, setActiveImageIndex] = useState(descriptionExists ? -1 : 0);
     const [isLoading, setIsLoading] = useState(false);
@@ -35,10 +35,13 @@ const DisplayArea: React.FC<DisplayAreaProps> = ({activeProject, navBarVisible})
     }, [activeImageIndex, descriptionExists]);
 
     const increaseActiveIndex = useCallback(() => {
-        if (activeImageIndex >= images.length - 1) return;
+        if (activeImageIndex >= images.length - 1) {
+            setNavBarVisible(true);
+            return;
+        }
         setIsLoading(true);
         setActiveImageIndex(index => index + 1);
-    }, [activeImageIndex, images.length]);
+    }, [activeImageIndex, images.length, setNavBarVisible]);
 
     const onImageLoad = () => {
         setIsLoading(false);
