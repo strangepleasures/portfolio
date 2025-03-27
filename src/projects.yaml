@@ -97,6 +97,22 @@
     - images/harlequin.jpg
     - images/torch.jpg
     - images/libido.jpg
+- title: London
+  images:
+    - images/london1.jpg
+    - images/london2.jpg
+    - images/london3.jpg
+    - images/london4.jpg
+    - images/london5.jpg
+    - images/london6.jpg
+    - images/london7.jpg
+    - images/london8.jpg
+    - images/london9.jpg
+    - images/london10.jpg
+    - images/london11.jpg
+    - images/london12.jpg
+    - images/london13.jpg
+    - images/london14.jpg
 - title: Paris, Close-Ups
   images:
     - images/paris1.jpg
