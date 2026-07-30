@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FaInstagram, FaFlickr, FaEnvelope, FaTumblr, FaBars, FaRss} from "react-icons/fa";
+import {FaInstagram, FaFlickr, FaEnvelope, FaBars, FaRss} from "react-icons/fa";
 import './Header.css';
 
 interface HeaderProps {
@@ -28,9 +28,6 @@ const Header = ({navBarVisible, setNavBarVisible}: HeaderProps) => {
                 </a>
                 <a href="https://www.flickr.com/photos/pavel-mikhailovskii" target="_blank" rel="noreferrer noopener">
                     <FaFlickr style={iconStyle}/>
-                </a>
-                <a href="https://pavelmikhailovskii.tumblr.com/">
-                    <FaTumblr style={iconStyle}/>
                 </a>
                 <a href="https://www.flickr.com/services/feeds/photos_public.gne?id=127983162@N07&lang=en-us&format=atom">
                     <FaRss style={iconStyle}/>

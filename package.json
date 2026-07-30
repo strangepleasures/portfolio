@@ -26,7 +26,7 @@
   "scripts": {
     "start": "npm run yaml && react-scripts start",
     "build": "npm run yaml && react-scripts build",
-    "yaml": "js-yaml ./src/projects.yaml > src/projects.json",
+    "yaml": "node scripts/yaml-to-json.mjs",
     "predeploy": "npm run build && cp CNAME build/",
     "deploy": "gh-pages -d build"
   },
